@@ -38,12 +38,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-
-/**
- * @author Zathura Code Generator http://zathuracode.org
- * www.zathuracode.org
- *
- */
 @ManagedBean
 @ViewScoped
 public class MultaView implements Serializable {

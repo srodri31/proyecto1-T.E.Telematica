@@ -22,11 +22,6 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
 
-/**
-* @author Zathura Code Generator http://zathuracode.org
-* www.zathuracode.org
-*
-*/
 @Stateless
 public class MultaLogic implements IMultaLogic {
     private static final Logger log = LoggerFactory.getLogger(MultaLogic.class);

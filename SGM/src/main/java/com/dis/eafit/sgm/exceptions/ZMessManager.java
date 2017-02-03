@@ -3,11 +3,6 @@ package com.dis.eafit.sgm.exceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author Zathura Code Generator http://zathuracode.org/
- * www.zathuracode.org
- * 
- */
 public class ZMessManager extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	

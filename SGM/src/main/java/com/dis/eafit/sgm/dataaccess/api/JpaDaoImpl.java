@@ -16,15 +16,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-
-/**
- *
- * @author <a href="mailto:dgomez@vortexbird.com">Diego A Gomez</a>
- * @project zathuracode
- * @class JpaDaoImpl
- * @date Nov 01, 2013
- *
- */
 @SuppressWarnings({"unchecked",
     "rawtypes"
 })
