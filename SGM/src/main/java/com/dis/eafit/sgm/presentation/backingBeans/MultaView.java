@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ViewScoped;
@@ -45,24 +45,33 @@ public class MultaView implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(MultaView.class);
     private InputText txtValor;
     private InputText txtId;
+    private Calendar calendar;
     private CommandButton btnSave;
     private CommandButton btnModify;
     private CommandButton btnDelete;
     private CommandButton btnClear;
     private List<MultaDTO> data;
     private MultaDTO selectedMulta;
+    private MultaDTO multaDTO;
     private Multa entity;
+    private Date fechaPago;
     private boolean showDialog;
+    
     @EJB
     private IBusinessDelegatorView businessDelegatorView;
 
     public MultaView() {
         super();
     }
+    
+    @PostConstruct
+    public void init(){
+    	multaDTO = new MultaDTO();
+    }
 
     public void rowEventListener(RowEditEvent e) {
         try {
-            MultaDTO multaDTO = (MultaDTO) e.getObject();
+            MultaDTO multaDTO = (MultaDTO) e.getObject();	
 
             if (txtValor == null) {
                 txtValor = new InputText();
@@ -178,7 +187,8 @@ public class MultaView implements Serializable {
             Long id = FacesUtils.checkLong(txtId);
 
             entity.setId(id);
-            entity.setValor(FacesUtils.checkLong(txtValor));
+            entity.setValor(multaDTO.getValor());
+            entity.setFechaPago(multaDTO.getFechaPago());
             businessDelegatorView.saveMulta(entity);
             FacesUtils.addInfoMessage(ZMessManager.ENTITY_SUCCESFULLYSAVED);
             action_clear();
@@ -197,7 +207,7 @@ public class MultaView implements Serializable {
                 entity = businessDelegatorView.getMulta(id);
             }
 
-            entity.setValor(FacesUtils.checkLong(txtValor));
+            entity.setValor(FacesUtils.checkBigDecimal(txtValor));
             businessDelegatorView.updateMulta(entity);
             FacesUtils.addInfoMessage(ZMessManager.ENTITY_SUCCESFULLYMODIFIED);
         } catch (Exception e) {
@@ -274,7 +284,7 @@ public class MultaView implements Serializable {
     public String action_modifyWitDTO(Long id, Long valor)
         throws Exception {
         try {
-            entity.setValor(FacesUtils.checkLong(valor));
+            entity.setValor(FacesUtils.checkBigDecimal(valor));
             businessDelegatorView.updateMulta(entity);
             FacesUtils.addInfoMessage(ZMessManager.ENTITY_SUCCESFULLYMODIFIED);
         } catch (Exception e) {
@@ -302,7 +312,15 @@ public class MultaView implements Serializable {
         this.txtId = txtId;
     }
 
-    public List<MultaDTO> getData() {
+    public Calendar getCalendar() {
+		return calendar;
+	}
+
+	public void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
+	}
+
+	public List<MultaDTO> getData() {
         try {
             if (data == null) {
                 data = businessDelegatorView.getDataMulta();
@@ -317,16 +335,33 @@ public class MultaView implements Serializable {
     public void setData(List<MultaDTO> multaDTO) {
         this.data = multaDTO;
     }
+    
+    public Date getFechaPago() {
+		return fechaPago;
+	}
 
-    public MultaDTO getSelectedMulta() {
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
+	}
+
+	public MultaDTO getSelectedMulta() {
         return selectedMulta;
     }
 
     public void setSelectedMulta(MultaDTO multa) {
         this.selectedMulta = multa;
     }
+    
 
-    public CommandButton getBtnSave() {
+    public MultaDTO getMultaDTO() {
+		return multaDTO;
+	}
+
+	public void setMultaDTO(MultaDTO multaDTO) {
+		this.multaDTO = multaDTO;
+	}
+
+	public CommandButton getBtnSave() {
         return btnSave;
     }
 

@@ -1,9 +1,15 @@
 package com.dis.eafit.sgm.modelo;
 // Generated 2/02/2017 10:48:54 PM by Hibernate Tools 5.1.0.Final
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,19 +18,21 @@ public class Multa implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1746747858721811197L;
 	private Long id;
-	private Long valor;
+	private BigDecimal valor;
+	private Persona persona;
+	private Date fechaPago;
 
 	public Multa() {
 	}
 
-	public Multa(Long id, Long valor) {
+	public Multa(Long id, BigDecimal valor) {
 		this.id = id;
 		this.valor = valor;
 	}
 
 	@Id
 
-	@Column(name = "id", unique = true, nullable = false, precision = 10, scale = 0)
+	@Column(name = "id", unique = true, nullable = false)
 	public Long getId() {
 		return this.id;
 	}
@@ -34,12 +42,33 @@ public class Multa implements java.io.Serializable {
 	}
 
 	@Column(name = "valor", nullable = false, precision = 10, scale = 0)
-	public Long getValor() {
+	public BigDecimal getValor() {
 		return this.valor;
 	}
 
-	public void setValor(Long valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	@Column(name = "fecha_pago", nullable = false)
+	public Date getFechaPago() {
+		return fechaPago;
+	}
+
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Persona.class)
+	@JoinColumn(name = "id_persona", referencedColumnName = "id")
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+	
+	
 
 }
