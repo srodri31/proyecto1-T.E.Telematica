@@ -33,8 +33,8 @@
 
 					<p:panel id="panelDataTableMulta" header="Multa">
 						<p:growl id="men" />
-						<p:dataTable value="#{multaView.data}" var="multa" emptyMessage="Sin registros"
-							paginator="true" rows="5">
+						<p:dataTable value="#{multaView.data}" var="multa"
+							emptyMessage="Sin registros" paginator="true" rows="5">
 
 							<p:column sortBy="#{multa.valor}">
 								<f:facet name="header">
@@ -42,7 +42,7 @@
 								</f:facet>
 								<h:outputText value="#{multa.valor}" />
 							</p:column>
-							
+
 							<p:column sortBy="#{multa.fechaPago}">
 								<f:facet name="header">
 									<h:outputText value="Fecha de pago" />
@@ -50,7 +50,29 @@
 								<h:outputText value="#{multa.fechaPago}" />
 							</p:column>
 
-							<p:column headerText="Options">
+							<p:column filterBy="#{multa.persona.documentoIdentidad}"
+								sortBy="#{multa.persona.documentoIdentidad}">
+								<f:facet name="header">
+									<h:outputText value="CC Persona" />
+								</f:facet>
+								<h:outputText value="#{multa.persona.documentoIdentidad}" />
+							</p:column>
+
+							<p:column sortBy="#{multa.persona.nombre}">
+								<f:facet name="header">
+									<h:outputText value="Nombre" />
+								</f:facet>
+								<h:outputText value="#{multa.persona.nombre}" />
+							</p:column>
+
+							<p:column sortBy="#{multa.persona.telefono}">
+								<f:facet name="header">
+									<h:outputText value="Telefono" />
+								</f:facet>
+								<h:outputText value="#{multa.persona.telefono}" />
+							</p:column>
+
+							<p:column headerText="Opciones">
 								<p:commandButton id="btnEdit" icon="ui-icon-pencil"
 									update=":dialogMulta" actionListener="#{multaView.action_edit}">
 									<f:attribute name="selectedMulta" value="#{multa}" />

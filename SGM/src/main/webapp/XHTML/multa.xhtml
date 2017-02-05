@@ -47,6 +47,17 @@
 							<p:calendar id="fechaPago"
 								value="#{multaView.multaDTO.fechaPago}"
 								binding="#{multaView.calendar}"></p:calendar>
+
+							<p:outputLabel for="cc" value="Documento de la persona"></p:outputLabel>
+							<p:inputNumber id="cc" decimalPlaces="0"
+								value="#{multaView.idPersona}">
+								<p:ajax event="blur" listener="#{multaView.documentoListener()}"
+									update="msg, nombre" />
+							</p:inputNumber>
+
+							<h:outputText value="Nombre de la Persona: " />
+							<h:outputText id="nombre"
+								value="#{multaView.multaDTO.persona.nombre}" />
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="panelBotones">

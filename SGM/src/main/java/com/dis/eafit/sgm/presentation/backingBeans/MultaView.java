@@ -1,5 +1,7 @@
 package com.dis.eafit.sgm.presentation.backingBeans;
 
+import com.dis.eafit.sgm.dataaccess.dao.IPersonaDAO;
+import com.dis.eafit.sgm.dataaccess.dao.PersonaDAO;
 import com.dis.eafit.sgm.exceptions.*;
 import com.dis.eafit.sgm.modelo.*;
 import com.dis.eafit.sgm.modelo.dto.MultaDTO;
@@ -54,11 +56,15 @@ public class MultaView implements Serializable {
     private MultaDTO selectedMulta;
     private MultaDTO multaDTO;
     private Multa entity;
+    private Long idPersona;
     private Date fechaPago;
     private boolean showDialog;
     
     @EJB
     private IBusinessDelegatorView businessDelegatorView;
+    
+    @EJB
+    private IPersonaDAO personaDAO;
 
     public MultaView() {
         super();
@@ -91,6 +97,15 @@ public class MultaView implements Serializable {
             action_modify();
         } catch (Exception ex) {
         }
+    }
+    
+    public String documentoListener(){
+    	Persona persona = personaDAO.findByCedula(idPersona).get(0);
+    	if(persona != null){
+    		multaDTO.setPersona(persona);
+    	}
+    
+    	return "";
     }
 
     public String action_new() {
@@ -189,6 +204,7 @@ public class MultaView implements Serializable {
             entity.setId(id);
             entity.setValor(multaDTO.getValor());
             entity.setFechaPago(multaDTO.getFechaPago());
+            entity.setPersona(multaDTO.getPersona());
             businessDelegatorView.saveMulta(entity);
             FacesUtils.addInfoMessage(ZMessManager.ENTITY_SUCCESFULLYSAVED);
             action_clear();
@@ -385,7 +401,15 @@ public class MultaView implements Serializable {
         this.btnDelete = btnDelete;
     }
 
-    public CommandButton getBtnClear() {
+    public Long getIdPersona() {
+		return idPersona;
+	}
+
+	public void setIdPersona(Long idPersona) {
+		this.idPersona = idPersona;
+	}
+
+	public CommandButton getBtnClear() {
         return btnClear;
     }
 

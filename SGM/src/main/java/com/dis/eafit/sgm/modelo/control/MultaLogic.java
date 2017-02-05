@@ -163,6 +163,7 @@ public class MultaLogic implements IMultaLogic {
                 multaDTO2.setValor((multaTmp.getValor() != null)
                     ? multaTmp.getValor() : null);
                 multaDTO2.setFechaPago(multaTmp.getFechaPago());
+                multaDTO2.setPersona(multaTmp.getPersona());
                 multaDTO.add(multaDTO2);
             }
 
