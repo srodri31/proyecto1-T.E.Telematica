@@ -10,6 +10,7 @@ import com.dis.eafit.sgm.utilities.*;
 
 import org.primefaces.component.calendar.*;
 import org.primefaces.component.commandbutton.CommandButton;
+import org.primefaces.component.inputnumber.InputNumber;
 import org.primefaces.component.inputtext.InputText;
 
 import org.primefaces.event.RowEditEvent;
@@ -45,7 +46,7 @@ import javax.faces.event.ActionEvent;
 public class MultaView implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = LoggerFactory.getLogger(MultaView.class);
-    private InputText txtValor;
+    private InputNumber txtValor;
     private InputText txtId;
     private Calendar calendar;
     private CommandButton btnSave;
@@ -80,7 +81,7 @@ public class MultaView implements Serializable {
             MultaDTO multaDTO = (MultaDTO) e.getObject();	
 
             if (txtValor == null) {
-                txtValor = new InputText();
+                txtValor = new InputNumber();
             }
 
             txtValor.setValue(multaDTO.getValor());
@@ -312,11 +313,11 @@ public class MultaView implements Serializable {
         return "";
     }
 
-    public InputText getTxtValor() {
+    public InputNumber getTxtValor() {
         return txtValor;
     }
 
-    public void setTxtValor(InputText txtValor) {
+    public void setTxtValor(InputNumber txtValor) {
         this.txtValor = txtValor;
     }
 
