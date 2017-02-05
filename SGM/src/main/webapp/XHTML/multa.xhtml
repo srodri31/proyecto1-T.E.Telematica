@@ -40,22 +40,25 @@
 							</p:inputText>
 
 							<h:outputText id="msgValor" value=" Valor" />
-							<p:inputText id="txtValor" value="#{multaView.multaDTO.valor}" binding="#{multaView.txtValor}" />
+							<p:inputText id="txtValor" value="#{multaView.multaDTO.valor}"
+								binding="#{multaView.txtValor}" />
 
-							<p:outputLabel for="fechaPago" value="Fecha de pago"/>
-							<p:calendar id="fechaPago" value="#{multaView.multaDTO.fechaPago}"></p:calendar>
+							<p:outputLabel for="fechaPago" value="Fecha de pago" />
+							<p:calendar id="fechaPago"
+								value="#{multaView.multaDTO.fechaPago}"
+								binding="#{multaView.calendar}"></p:calendar>
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="panelBotones">
 						<div align="center">
 							<p:commandButton id="btnSave" binding="#{multaView.btnSave}"
-								value="Save" action="#{multaView.action_save()}" process="@this formDialog"
-								update="panelMulta,msg,panelBotones" />
+								value="Guardar" action="#{multaView.action_save()}"
+								process="@this formDialog" update="panelMulta,msg,panelBotones" />
 							<p:commandButton id="btnDelete" binding="#{multaView.btnDelete}"
-								value="Delete" action="#{multaView.action_delete_master()}"
+								value="Eliminar" action="#{multaView.action_delete_master()}"
 								onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
 								update="panelMulta,msg,panelBotones" />
-							<p:commandButton id="btnClear" value="Clear"
+							<p:commandButton id="btnClear" value="Limpiar"
 								action="#{multaView.action_clear()}"
 								update="panelMulta,msg,panelBotones" />
 						</div>

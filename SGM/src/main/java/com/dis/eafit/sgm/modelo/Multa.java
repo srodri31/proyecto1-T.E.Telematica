@@ -7,16 +7,21 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "multa", catalog = "telematica")
 public class Multa implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1746747858721811197L;
+	
 	private Long id;
 	private BigDecimal valor;
 	private Persona persona;
@@ -31,8 +36,7 @@ public class Multa implements java.io.Serializable {
 	}
 
 	@Id
-
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id")
 	public Long getId() {
 		return this.id;
 	}
@@ -50,7 +54,8 @@ public class Multa implements java.io.Serializable {
 		this.valor = valor;
 	}
 
-	@Column(name = "fecha_pago", nullable = false)
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_pago")
 	public Date getFechaPago() {
 		return fechaPago;
 	}

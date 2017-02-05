@@ -11,11 +11,11 @@ public class ZMessManager extends RuntimeException {
 	public final static String ALL = "All ";
 	public final static String ENTCHILD = "related tables(childs)";
 	public final static String FOREIGNDATA = "foreign classes data: ";
-	public static String ENTITY_SUCCESFULLYSAVED = "Entity succesfully saved";
-	public static String ENTITY_SUCCESFULLYDELETED = "Entity succesfully deleted";
-	public static String ENTITY_SUCCESFULLYMODIFIED = "Entity succesfully modified";
-	public static String ENTITY_WITHSAMEKEY = "Another Entity with the same key was found";
-	public static String ENTITY_NOENTITYTOUPDATE = "No Entity was found, with the typed key ";
+	public static String ENTITY_SUCCESFULLYSAVED = "Registro guardado correctamente";
+	public static String ENTITY_SUCCESFULLYDELETED = "Regustro eliminado correctamente";
+	public static String ENTITY_SUCCESFULLYMODIFIED = "Registro modificado correctamente";
+	public static String ENTITY_WITHSAMEKEY = "Ya existe un registro con el mismo id";
+	public static String ENTITY_NOENTITYTOUPDATE = "No se encontró un registro con ese id";
 
 	public ZMessManager() {
 	}
@@ -28,7 +28,7 @@ public class ZMessManager extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 
 		public NotValidFieldException(String info) {
-			super("The value for the field: \"" + info + "\" is not valid");
+			super("El valor para el campo \"" + info + "\" es invalido");
 		}
 	}
 	
